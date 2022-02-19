@@ -1,0 +1,39 @@
+// SETUP
+@import 'setup/typography';
+// BASICS
+// @import 'basics/base';
+
+// CMPS
+@import 'cmps/header';
+
+
+//PAGES
+@import 'pages/signupPage';
+.img{
+    width: 100px;
+}
+
+.signup-btn {
+    border-radius: 3px;
+    padding: 10px;
+    background-color: #8a9dee;
+    color: white;
+    border: none;
+    margin-top: 20px;
+
+    &:hover {
+        background-color: #7b8dda;
+    }
+}
+.login-btn {
+    border-radius: 3px;
+    padding: 10px;
+    background-color: #8a9dee;
+    color: white;
+    border: none;
+    margin-top: 20px;
+
+    &:hover {
+        background-color: #7b8dda;
+    }
+}
