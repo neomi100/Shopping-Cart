@@ -5,17 +5,17 @@ const logger = require('../../services/logger.service')
 const bcrypt = require('bcrypt')
 
 async function login(username, password) {
-    console.log('service');
+    // console.log('service');
     try {
         logger.debug(`service - login with username: ${username}`)
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ username })
-        console.log('user1')
+        // console.log('user1')
         if (!user) return Promise.reject('Invalid username or password')
         // console.log('user2', user)
         // console.log('user666', password, user.password)
         const match = await bcrypt.compare(password, user.password)
-        console.log('user3')
+        // console.log('user3')
         if (!match) return Promise.reject('Invalid username or password')
         delete user.password
         return user

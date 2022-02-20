@@ -1,7 +1,8 @@
 // SETUP
 @import 'setup/typography';
+@import 'setup/variables';
 // BASICS
-// @import 'basics/base';
+@import 'basics/base';
 
 // CMPS
 @import 'cmps/header';
@@ -9,31 +10,7 @@
 
 //PAGES
 @import 'pages/signupPage';
-.img{
-    width: 100px;
-}
+@import 'pages/homePage';
+@import 'pages/cartPage';
 
-.signup-btn {
-    border-radius: 3px;
-    padding: 10px;
-    background-color: #8a9dee;
-    color: white;
-    border: none;
-    margin-top: 20px;
 
-    &:hover {
-        background-color: #7b8dda;
-    }
-}
-.login-btn {
-    border-radius: 3px;
-    padding: 10px;
-    background-color: #8a9dee;
-    color: white;
-    border: none;
-    margin-top: 20px;
-
-    &:hover {
-        background-color: #7b8dda;
-    }
-}

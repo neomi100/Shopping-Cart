@@ -7,6 +7,7 @@ const logger = require('../../services/logger.service')
 async function query(){
     try{
         const collection = await dbService.getCollection('products')
+       
         const products = await collection.find().toArray()
         return products
     }catch(er){
@@ -25,7 +26,7 @@ async function getByIds(productsIds = []){
         }).toArray()
         return products
     }catch(err){
-        console.log('1111');
+        // console.log('1111');
         logger.error('cannot find products', err)
         throw err
     }

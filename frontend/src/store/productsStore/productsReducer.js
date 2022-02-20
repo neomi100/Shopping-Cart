@@ -9,11 +9,11 @@ const INITIAL_STATE = {
           ...state,
           products: action.products
         }
-      case 'ADD_PRODUCTS_CART':
-        return {
-          ...state,
-          cart: [...state.cart, action.productForCart]
-        }
+      // case 'ADD_PRODUCTS_CART':
+      //   return {
+      //     ...state,
+      //     cart: [...state.cart, action.productForCart]
+      //   }
   
       default:
         return state

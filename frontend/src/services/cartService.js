@@ -6,29 +6,60 @@ const BASE_URL = process.env.NODE_ENV === 'production' ?
 export const cartService = {
     addToCart,
     getCart,
-    getCartWithProducts
+    // getCartWithProducts,
+    // updateProductInCart
 }
 
-const cart = JSON.parse(localStorage.getItem('CART')) || [];
+const cart = JSON.parse(localStorage.getItem('CART')) || {userId:null, productsIds:[]};
 
-async function addToCart(productId, userId) {
+async function addToCart(productsIds, userId) {
+
+    // console.log(productsIds, userId, 'ggg');
     if (userId) { //user logged in
-        await axios.post(`${BASE_URL}carts/addToCart`, { productId, userId });
+       const cartUser= await axios.post(`${BASE_URL}carts/addToCart`, { productsIds, userId });
+       console.log('cartUser from back', cartUser)
+    //    localStorage.setItem('CART', JSON.stringify(cartUser))
+    return cartUser.data.value
     } else { // no user
-        cart.push(productId)
+        // צריך לחלץ את הפרודקט מתוך המערך
+        productsIds.forEach(productId => {
+            cart.productsIds.push(productId)
+        });
+        // cart.push(productId)
         localStorage.setItem('CART', JSON.stringify(cart) || []);
+        return cart
     }
 }
 
+
 async function getCart(userId) {
-    const res = await axios.get(`${BASE_URL}carts/addToCart`, userId)
+    console.log('userId', userId)
+    const res = await axios.post(`${BASE_URL}carts/getCart`, {userId})
+    console.log(res.data,'data');
     return res.data
 }
 
-function getCartWithProducts(cart) {
-    const producrsId = cart.map((product) => product._id)
-    addToCart(producrsId,)
-}
+// async function updateProductInCart(product, userId){
+//     if(userId) await axios.put(`${BASE_URL}carts/updateProductInCart`,{product, userId})
+//     else {
+//         const idx= cart.findIndex(productInCart=>productInCart===product._id)
+//         cart.splice(idx, 1, product._id)
+//         localStorage.setItem('CART', JSON.stringify(cart))
+//     }
+// }
+
+// async function getCart(userId) {
+//     console.log('userId', userId)
+//     const res = await axios.get(`${BASE_URL}carts/addToCart`, userId)
+//     console.log(res.data,'data');
+//     return res.data
+// }
+
+// function getCartWithProducts(cart) {
+//     const producrsId = cart.map((product) => product._id)
+//     addToCart(producrsId,)
+// }
+
 
 // function createEmptyCart() {
 //    const cart={

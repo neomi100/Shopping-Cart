@@ -23,8 +23,6 @@ export default function ProductsList({ products }) {
     window.scrollTo({
       top: 0, 
       behavior: 'auto'
-      /* you can also use 'auto' behaviour
-         in place of 'smooth' */
     });
   };
 
@@ -38,11 +36,14 @@ export default function ProductsList({ products }) {
             </li>
           );
         })}
-        <button onClick={()=>{setPageIdx(pageIdx - 1)
-        }}>Prev</button>
-        <button onClick={()=>{setPageIdx(pageIdx + 1)
-        }}>Next</button>
       </ul>
+      <div className="pagenation">
+        <button className="prev" onClick={()=>{setPageIdx(pageIdx - 1)
+        }}></button>
+        {pageIdx>0?pageIdx+1:1}
+        <button className="next" onClick={()=>{setPageIdx(pageIdx + 1)
+        }}></button>
+        </div>
     </div>
   );
 }

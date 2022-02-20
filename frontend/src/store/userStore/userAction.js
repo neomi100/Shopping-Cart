@@ -13,11 +13,11 @@ export function signupUser(credentials) {
     }
 }
 export function loginUser(credentials) {
-    console.log('credentials', credentials)
+    // console.log('credentials', credentials)
     return async dispatch => {
         try {
             const loguser = await userService.login(credentials)
-            console.log('user', loguser)
+            // console.log('user', loguser)
             dispatch({ type: 'LOGIN', user: loguser })
         } catch (error) {
             console.log('error', error)

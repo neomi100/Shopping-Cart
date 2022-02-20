@@ -13,11 +13,19 @@ async function query() {
     return res.data
 }
 
+async function getProductsByIds(productsIds) {
+    //return products from mongodb
+    const res = await axios.post(`${BASE_URL}products/getByIds`, { productsIds })
+    const products = res.data
+    productsIds.forEach(pId => {
+        products.forEach(product => {
+            if (pId === product._id)
+            product.amount++
+        })
+    });
+    return products
+} 
+
 // async function saveCart(cart){
 //     // return await axios.put(`${BASE_URL}products/saveCart/`, cart)
 // }
-async function getProductsByIds (productsIds) {
-  //return products from mongodb
-  const res = await axios.post(`${BASE_URL}products/getByIds`, {productsIds})
-  return res.data
-} 

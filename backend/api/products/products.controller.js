@@ -16,7 +16,7 @@ async function getByIds(req, res) {
     try {
         const {productsIds} = req.body
         const products = await productsService.getByIds(productsIds)
-        console.log('leeeeeee',products);
+        // console.log('leeeeeee',products);
         res.send(products)
     } catch (err) {
         logger.error('Failed to get products', err)
