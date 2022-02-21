@@ -75,6 +75,7 @@
         padding-bottom: 20px;
         font-family: mochiy, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
         align-items: center;
+        margin-top: 20px;
         .next {
             cursor: pointer;
             background: none;
@@ -105,3 +106,17 @@
         }
     }
 }
+
+
+@media (min-width:1200px){  
+.list{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.nav{
+    margin-left: 11%;
+}
+.user-header{
+    margin-right: 11%;
+}
+    }
