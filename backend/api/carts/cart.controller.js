@@ -20,7 +20,6 @@ async function addToCart(req, res) {
         const { userId, productsIds } = req.body
         const saveCart = await cartService.addToCart(userId, productsIds)
         logger.debug('controller - add to cart  succeeded')
-        console.log('saveCart', saveCart)
         res.json(saveCart)
     } catch (err) {
         logger.error('Failed to add products ' + err)
