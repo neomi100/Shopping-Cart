@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductPreview from "./ProductPreview";
+
 export default function ProductsList({ products }) {
   const [productsPage, setProductsPage] = useState(products);
   const [pageIdx, setPageIdx] = useState(0);
@@ -7,7 +8,11 @@ export default function ProductsList({ products }) {
   const PAGE_QUANTITY = 6;
 
   useEffect(() => {
-       if (pageIdx * PAGE_QUANTITY >= products.length || pageIdx + 1 < 0||pageIdx -1 < 0) {
+    if (
+      pageIdx * PAGE_QUANTITY >= products.length ||
+      pageIdx + 1 < 0 ||
+      pageIdx - 1 < 0
+    ) {
       setPageIdx(0);
     }
     const productsForShow = () => {
@@ -16,13 +21,13 @@ export default function ProductsList({ products }) {
       setProductsPage(products.slice(fromIdx, toIdx));
     };
     productsForShow();
-    scrollToTop()
+    scrollToTop();
   }, [pageIdx]);
 
-  const scrollToTop = () =>{
+  const scrollToTop = () => {
     window.scrollTo({
-      top: 0, 
-      behavior: 'auto'
+      top: 0,
+      behavior: "auto",
     });
   };
 
@@ -38,12 +43,20 @@ export default function ProductsList({ products }) {
         })}
       </ul>
       <div className="pagenation">
-        <button className="prev" onClick={()=>{setPageIdx(pageIdx - 1)
-        }}></button>
-        {pageIdx>0?pageIdx+1:1}
-        <button className="next" onClick={()=>{setPageIdx(pageIdx + 1)
-        }}></button>
-        </div>
+        <button
+          className="prev"
+          onClick={() => {
+            setPageIdx(pageIdx - 1);
+          }}
+        ></button>
+        {pageIdx > 0 ? pageIdx + 1 : 1}
+        <button
+          className="next"
+          onClick={() => {
+            setPageIdx(pageIdx + 1);
+          }}
+        ></button>
+      </div>
     </div>
   );
 }

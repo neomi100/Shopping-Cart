@@ -1,18 +1,4 @@
-.page-loading-screen {
-    background: rgba(255, 255, 255, 0.8);
-    position: fixed;
-    width: 70px;
-    height: 70px;
-    bottom: 10vh;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 20;
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-}
-
 .page {
-    background-color: #f7e8e3;
     margin: 0 30px 0;
     .list {
         display: flex;
@@ -23,16 +9,17 @@
         padding: 0;
         padding: 10px;
         font-family: Nunito-Regular, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-        font-size: 140%;
+        font-size: 95%;
+        margin: 0 8%;
         .preview-container {
-            overflow: hidden;
             border-radius: 7px;
-            width: 375px;
+            width: 333px;
             display: flex;
             flex-direction: column;
             padding: 10px;
             justify-content: space-between;
             .product-preview {
+                background-color: #fdf7f4;
                 border-radius: 7px;
                 box-shadow: 0 0 2px 0.5px #0000003b;
                 width: 100%;
@@ -43,7 +30,7 @@
                 .preview {
                     display: flex;
                     flex-direction: row;
-                    height: 94px;
+                    height: 60px;
                     justify-content: space-between;
                     .product-ditails {
                         display: flex;
@@ -55,27 +42,26 @@
                             text-align: start;
                         }
                         .price {
-                            font-size: 1rem;
+                            font-size: 0.8rem;
                             color: #635f5fde;
                         }
                     }
                     .add-to-cart {
-                        margin-top: 14px;
+                        margin-right: 7px;
                         cursor: pointer;
+                        background: none;
+                        border: none;
                         &::after {
                             font-family: fa-solid;
                             content: "\f217";
                             color: #8b008b;
-                            // color:$clr8 ;
-                            font-size: 41px;
+                            font-size: 33px;
                         }
-                        padding: 10px;
-                        background: none;
-                        border: none;
-                        width: 80px;
-                        height: 60px;
                         &:hover {
+                            margin-top: 10px;
+                            height: 40px;
                             background-color: #d5bec2;
+                            border-radius: 7px;
                         }
                     }
                 }

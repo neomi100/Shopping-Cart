@@ -1,16 +1,38 @@
-.empty-cart{
+.empty-cart {
     background: rgba(255, 255, 255, 0.8);
     position: fixed;
     width: 60%;
-    height: 88px;
     top: 40%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 20;
     box-shadow: 0 0 7px black;
     border-radius: 4%;
     text-align: center;
     padding: 30px;
-    color:#A58E65 ;
+    color: #a58e65;
     font-family: mochiy, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .total-price {
+        margin-bottom: 9px;
+        background: rgba(255, 255, 255, 0.8);
+        width: 60vw;
+        font-size: 1.7rem;
+        box-shadow: 0 0 7px black;
+        border-radius: 4%;
+        text-align: center;
+        padding: 30px;
+        color: #a58e65;
+        font-family: archi, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    }
+    .amount {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-right: 13px;
+    }
 }

@@ -1,14 +1,5 @@
 const INITIAL_STATE = {
-    loggedinUser:null,
-    // {
-    //     _id:'001',
-    //     username:'puki',
-    //     password: '1523',
-    //     fullname:'puki balila',
-    //     imgUrl: ('https://robohash.org/?set=set5'),
-    //     productsInCart: []
-    // } ,
-    // users:null           
+    loggedinUser: null,
 }
 
 export function userReducer(state = INITIAL_STATE, action) {
@@ -28,13 +19,7 @@ export function userReducer(state = INITIAL_STATE, action) {
                 ...state,
                 loggedinUser: null
             }
-            // case 'UPDATE':
-            //     return {
-            //         ...state,
-            //         // loggedinUser: {...state.loggedinUser, productsInCart:action.user.productsInCart}
-            //         loggedinUser: action.user
-            //     }
-                default:
-                    return state
-            }
+        default:
+            return state
+    }
 }

@@ -5,17 +5,12 @@ const logger = require('../../services/logger.service')
 const bcrypt = require('bcrypt')
 
 async function login(username, password) {
-    // console.log('service');
     try {
         logger.debug(`service - login with username: ${username}`)
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ username })
-        // console.log('user1')
         if (!user) return Promise.reject('Invalid username or password')
-        // console.log('user2', user)
-        // console.log('user666', password, user.password)
         const match = await bcrypt.compare(password, user.password)
-        // console.log('user3')
         if (!match) return Promise.reject('Invalid username or password')
         delete user.password
         return user
@@ -26,17 +21,16 @@ async function login(username, password) {
 
 }
 
-async function signup(username, password, fullname, imgUrl) {
+async function signup(username, password, imgUrl) {
     try {
-        logger.debug(`signup.service - signup with username: ${username}, fullname: ${fullname}`)
-        // if (!username || !password || !fullname || !imgUrl) return Promise.reject('fullname, username and password are required!')
+        logger.debug(`signup.service - signup with username: ${username}`)
+        if (!username || !password) return Promise.reject('username or password are required!')
 
         const saltRounds = 10
         const hash = await bcrypt.hash(password, saltRounds)
         const userToSave = {
             username,
             password: hash,
-            fullname,
             imgUrl: imgUrl || ('https://robohash.org/' + _makeId() + '?set=set5'),
             productsInCart: []
         }

@@ -1,16 +1,11 @@
 // SETUP
-@import 'setup/typography';
-@import 'setup/variables';
+@import "setup/typography";
+@import "setup/loading";
 // BASICS
-@import 'basics/base';
-
+@import "basics/base";
 // CMPS
-@import 'cmps/header';
-
-
+@import "cmps/header";
 //PAGES
-@import 'pages/signupPage';
-@import 'pages/homePage';
-@import 'pages/cartPage';
-
-
+@import "pages/signupPage";
+@import "pages/homePage";
+@import "pages/cartPage";

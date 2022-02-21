@@ -1,12 +1,7 @@
 const MongoClient = require('mongodb').MongoClient
 const config = require('../config')
 
-module.exports = {
-    getCollection
-}
-
 const dbName = 'shopping_cart_db'
-
 let dbConn = null
 
 async function getCollection(collectionName) {
@@ -15,7 +10,6 @@ async function getCollection(collectionName) {
         const collection = await db.collection(collectionName)
         return collection
     } catch (err) {
-        // console.log('abc')
         logger.error('Failed to get Mongo collection', err)
         throw err
     }
@@ -32,4 +26,9 @@ async function connect() {
         logger.error('Cannot Connect to DB', err)
         throw err
     }
+}
+
+
+module.exports = {
+    getCollection
 }

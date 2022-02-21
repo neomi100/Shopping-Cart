@@ -1,7 +1,6 @@
 const fs = require('fs')
 const asyncLocalStorage = require('./als.service')
 
-
 const logsDir = './logs'
 if (!fs.existsSync(logsDir)) {
     fs.mkdirSync(logsDir)
@@ -12,16 +11,14 @@ function getTime() {
     return now.toLocaleString()
 }
 
-
 function isError(e) {
     return e && e.stack && e.message;
 }
 
 function doLog(level, ...args) {
-
     const strs = args.map(arg =>
         (typeof arg === 'string') ? arg :
-        (isError(arg)) ? arg : JSON.stringify(arg))
+            (isError(arg)) ? arg : JSON.stringify(arg))
 
     var line = strs.join(' | ')
     const store = asyncLocalStorage.getStore()
@@ -33,7 +30,7 @@ function doLog(level, ...args) {
 
 module.exports = {
     debug(...args) {
-        // if (process.env.NODE_NEV === 'production') return
+        if (process.env.NODE_NEV === 'production') return
         doLog('DEBUG', ...args)
     },
     info(...args) {

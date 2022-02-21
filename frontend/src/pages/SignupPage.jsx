@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signupUser } from "../store/userStore/userAction";
 
-export default function SignupPage () {
+export default function SignupPage() {
   const [fields, setFields] = useState({ username: "", password: "" });
   const history = useHistory();
   const dispatch = useDispatch();
+  const ref = useRef();
 
-  const signup = async (ev) => {
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
+
+  const signup = (ev) => {
     ev.preventDefault();
-    await dispatch(signupUser({ username, password }));
+    dispatch(signupUser({ username, password }));
     history.push("/");
   };
 
@@ -28,6 +33,7 @@ export default function SignupPage () {
         <label>
           Username:
           <input
+            ref={ref}
             value={username}
             name="username"
             onChange={inputHandler}
@@ -51,4 +57,4 @@ export default function SignupPage () {
       </form>
     </section>
   );
-};
+}

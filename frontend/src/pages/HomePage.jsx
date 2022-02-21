@@ -9,10 +9,9 @@ export default function HomePage() {
 
   useEffect(() => {
     dispatch(loadProducts());
-    // console.log('products', products)
   }, [products]);
 
-  if (!products) return <div className="page-loading-screen">Loading...</div>;
+  if (!products) return <div className="loading">Loading&#8230;</div>;
   return (
     <div>
       <div className="page">
