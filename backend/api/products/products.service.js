@@ -7,7 +7,6 @@ const logger = require('../../services/logger.service')
 async function query() {
     try {
         const collection = await dbService.getCollection('products')
-
         const products = await collection.find().toArray()
         return products
     } catch (er) {

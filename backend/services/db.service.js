@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient
 const config = require('../config')
 
-const dbName = 'shopping_cart_db'
+const dbName = 'Shopping_Cart'
 let dbConn = null
 
 async function getCollection(collectionName) {

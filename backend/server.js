@@ -31,13 +31,9 @@ const productsRoutes = require('./api/products/products.routes')
 const userRoutes= require('./api/user/user.routes')
 const cartsRoutes= require('./api/carts/cart.routes')
 
-// routes
-// const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
-// app.all('*', setupAsyncLocalStorage)
 
 app.get('/api/setup-session', (req, res) =>{
     req.session.connectedAt = Date.now()
-    // console.log('setup-session:', req.sessionID);
     res.end()
 })
 
@@ -45,12 +41,7 @@ app.get('/api/setup-session', (req, res) =>{
 app.use('/api/products', productsRoutes)
 app.use('/api/user/', userRoutes)
 app.use('/api/carts/', cartsRoutes)
-// app.use('/api/review', reviewRoutes)
-// connectSockets(http, session)
 
-// Make every server-side-route to match the index.html
-// so when requesting http://localhost:3030/index.html/car/123 it will still respond with
-// our SPA (single page app) (the index.html file) and allow vue/react-router to take it from there
 app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
