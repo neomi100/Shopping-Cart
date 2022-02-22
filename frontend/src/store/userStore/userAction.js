@@ -11,12 +11,15 @@ export function signupUser(credentials) {
         }
     }
 }
+
 export function loginUser(credentials) {
     return async dispatch => {
         try {
             const loguser = await userService.login(credentials)
+            if (loguser) setError()
             dispatch({ type: 'LOGIN', user: loguser })
         } catch (error) {
+            dispatch({ type: 'SET_ERROR', systemMsg: "Wrong username or password. Maybe we do not know yet? Please try again or sign up" })
             console.log('error', error)
         }
     }
@@ -32,3 +35,8 @@ export function logout() {
         }
     }
 }
+
+export function setError() {
+    return { type: 'SET_ERROR', msg: "" }
+}
+

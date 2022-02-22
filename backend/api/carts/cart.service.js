@@ -33,7 +33,7 @@ async function addToCart(userId, productsIds) {
             { upsert: true }
         )
     } catch (err) {
-        logger.error(`cannot update user ${user._id}`, err)
+        logger.error(`cannot add to cart ${user._id}`, err)
         throw err
     }
 }

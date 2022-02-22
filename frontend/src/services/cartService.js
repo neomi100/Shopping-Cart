@@ -24,7 +24,6 @@ async function addToCart(productsIds, userId) {
     }
 }
 
-
 async function getCart(userId) {
     const res = await axios.post(`${BASE_URL}carts/getCart`, { userId })
     return res.data

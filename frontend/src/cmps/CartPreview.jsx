@@ -9,7 +9,7 @@ export default function CartPreview({ product }) {
           <p>{product.ProductTitle}</p>
           <p className="price">{product.Price}</p>
         </div>
-        <p className="amount">{product.amount}</p>
+        <p className="amount">+{product.amount}</p>
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import ProductPreview from "./ProductPreview";
 export default function ProductsList({ products }) {
   const [productsPage, setProductsPage] = useState(products);
   const [pageIdx, setPageIdx] = useState(0);
-
   const PAGE_QUANTITY = 6;
 
   useEffect(() => {
@@ -43,19 +42,23 @@ export default function ProductsList({ products }) {
         })}
       </ul>
       <div className="pagenation">
-        <button
-          className="prev"
-          onClick={() => {
-            setPageIdx(pageIdx - 1);
-          }}
-        ></button>
+        {pageIdx >= 1 && (
+          <button
+            className="prev"
+            onClick={() => {
+              setPageIdx(pageIdx - 1);
+            }}
+          ></button>
+        )}
         {pageIdx > 0 ? pageIdx + 1 : 1}
-        <button
-          className="next"
-          onClick={() => {
-            setPageIdx(pageIdx + 1);
-          }}
-        ></button>
+        {pageIdx + 1 <= products.length / PAGE_QUANTITY && (
+          <button
+            className="next"
+            onClick={() => {
+              setPageIdx(pageIdx + 1);
+            }}
+          ></button>
+        )}
       </div>
     </div>
   );

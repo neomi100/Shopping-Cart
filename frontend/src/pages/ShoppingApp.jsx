@@ -7,11 +7,10 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { cartService } from "../services/cartService";
-import { productsService } from "../services/productsService";
 import { setCart } from "../store/cartStore/cartAction";
 
 export default function ShoppingApp() {
-  const { cart, cartToShow } = useSelector((state) => state.cartModule);
+  const { cart } = useSelector((state) => state.cartModule);
   const { loggedinUser } = useSelector((state) => state.userModule);
   const [isFrist, setIsFrist] = useState(false);
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ export default function ShoppingApp() {
 
   const getInitialCart = async () => {
     let updateCart = cart;
-    let updateCartToShow = cartToShow;
+
     if (!isFrist && loggedinUser && cart.length) {
       setIsFrist(true);
       const { _id: userId } = loggedinUser;
@@ -33,17 +32,12 @@ export default function ShoppingApp() {
       setIsFrist(true);
       const { _id: userId } = loggedinUser;
       updateCart = await cartService.getCart(userId);
-      dispatch(setCart(updateCart.productsIds));
+      dispatch(setCart(updateCart));
     } else {
       setIsFrist(false);
       updateCart = localStorage.CART
         ? JSON.parse(localStorage.CART)
         : { userId: null, productsIds: [] };
-      if (updateCart.productsIds.length) {
-        updateCartToShow = await productsService.getProductsByIds(
-          updateCart.productsIds
-        );
-      }
     }
   };
 

@@ -1,6 +1,5 @@
 
 const dbService = require('../../services/db.service')
-const ObjectId = require('mongodb').ObjectId
 const logger = require('../../services/logger.service')
 const bcrypt = require('bcrypt')
 
@@ -25,7 +24,6 @@ async function signup(username, password, imgUrl) {
     try {
         logger.debug(`signup.service - signup with username: ${username}`)
         if (!username || !password) return Promise.reject('username or password are required!')
-
         const saltRounds = 10
         const hash = await bcrypt.hash(password, saltRounds)
         const userToSave = {

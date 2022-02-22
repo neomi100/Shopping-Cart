@@ -13,8 +13,7 @@ const session = expressSession({
     cookie: { secure: false }
 })
 
-// app.use(express.json())
-app.use(express.json({limit: '50mb'}));
+app.use(express.json({ limit: '50mb' }));
 app.use(session)
 
 if (process.env.NODE_ENV === 'production') {
@@ -28,11 +27,11 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const productsRoutes = require('./api/products/products.routes')
-const userRoutes= require('./api/user/user.routes')
-const cartsRoutes= require('./api/carts/cart.routes')
+const userRoutes = require('./api/user/user.routes')
+const cartsRoutes = require('./api/carts/cart.routes')
 
 
-app.get('/api/setup-session', (req, res) =>{
+app.get('/api/setup-session', (req, res) => {
     req.session.connectedAt = Date.now()
     res.end()
 })

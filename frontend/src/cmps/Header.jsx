@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Modal from "./Modal";
@@ -8,9 +8,13 @@ export default function Header() {
   const { cart } = useSelector((state) => state.cartModule);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const toggleModal = () => {
+    setModalIsOpen((prev) => !prev);
+  };
+
   return (
     <header className="app-header">
-      <div className="navbar">
+      <div>
         <NavLink
           exact
           to="/"
@@ -35,10 +39,7 @@ export default function Header() {
         ) : (
           <div className="no-products"></div>
         )}
-        <div
-          className="user-menu"
-          onClick={() => setModalIsOpen((prev) => !prev)}
-        >
+        <div className="user-menu" onClick={() => toggleModal()}>
           {loggedinUser ? (
             <img className="user-menu-img" src={loggedinUser.imgUrl} />
           ) : (
@@ -47,9 +48,7 @@ export default function Header() {
               src={require("../assets/img/userGuest.jpg")}
             />
           )}
-          {modalIsOpen && (
-            <Modal setModalIsOpen={setModalIsOpen} modalIsOpen={modalIsOpen} />
-          )}
+          {modalIsOpen && <Modal toggleModal={toggleModal} />}
         </div>
       </div>
     </header>

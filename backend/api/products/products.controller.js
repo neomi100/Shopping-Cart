@@ -1,5 +1,5 @@
 const logger = require('../../services/logger.service')
-const productsService =require('./products.service')
+const productsService = require('./products.service')
 
 async function getProducts(req, res) {
     try {
@@ -14,7 +14,7 @@ async function getProducts(req, res) {
 
 async function getByIds(req, res) {
     try {
-        const {productsIds} = req.body
+        const { productsIds } = req.body
         const products = await productsService.getByIds(productsIds)
         res.send(products)
     } catch (err) {
@@ -26,5 +26,5 @@ async function getByIds(req, res) {
 
 module.exports = {
     getProducts,
-    getByIds 
+    getByIds
 }

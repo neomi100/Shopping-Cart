@@ -49,22 +49,28 @@ export default function CartList({ products }) {
               </li>
             ))}
           </ul>
-          <div className="total-price">Total price: ${sum}</div>
+          <div className="total-price">
+            Total price: ${sum.toFixed({ fractionDigits: 8 })}
+          </div>
           {products.length > 6 && (
             <div className="pagenation">
-              <button
-                className="prev"
-                onClick={() => {
-                  setPageIdx(pageIdx - 1);
-                }}
-              ></button>
+              {pageIdx >= 1 && (
+                <button
+                  className="prev"
+                  onClick={() => {
+                    setPageIdx(pageIdx - 1);
+                  }}
+                ></button>
+              )}
               {pageIdx > 0 ? pageIdx + 1 : 1}
-              <button
-                className="next"
-                onClick={() => {
-                  setPageIdx(pageIdx + 1);
-                }}
-              ></button>
+              {pageIdx + 1 <= products.length / PAGE_QUANTITY && (
+                <button
+                  className="next"
+                  onClick={() => {
+                    setPageIdx(pageIdx + 1);
+                  }}
+                ></button>
+              )}
             </div>
           )}
         </div>

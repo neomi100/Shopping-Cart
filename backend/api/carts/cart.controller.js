@@ -9,7 +9,7 @@ async function getcart(req, res) {
         logger.debug('controller - new cart created')
         res.json(cart)
     } catch (err) {
-        logger.error('Failed to creat cart ' + err)
+        logger.error('Failed to creat cart' + err)
         res.status(500).send({ err: 'Failed to creat cart' })
     }
 }
@@ -19,10 +19,10 @@ async function addToCart(req, res) {
     try {
         const { userId, productsIds } = req.body
         const saveCart = await cartService.addToCart(userId, productsIds)
-        logger.debug('controller - add to cart  succeeded')
+        logger.debug('controller - add to cart succeeded')
         res.json(saveCart)
     } catch (err) {
-        logger.error('Failed to add products ' + err)
+        logger.error('Failed to add products' + err)
         res.status(500).send({ err: 'Failed to add products' })
     }
 }

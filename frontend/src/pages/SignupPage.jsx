@@ -7,16 +7,25 @@ export default function SignupPage() {
   const [fields, setFields] = useState({ username: "", password: "" });
   const history = useHistory();
   const dispatch = useDispatch();
-  const ref = useRef();
+  const userNameRef = useRef();
+  const userPasswordRef = useRef();
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    ref.current.focus();
+    userNameRef.current.focus();
   }, []);
 
   const signup = (ev) => {
     ev.preventDefault();
-    dispatch(signupUser({ username, password }));
-    history.push("/");
+    if (userNameRef.current.value && userPasswordRef.current.value) {
+      setErrorMsg("");
+      dispatch(signupUser({ username, password }));
+      history.push("/");
+    } else {
+      setErrorMsg(
+        "Complete the registration - a username and password must be entered"
+      );
+    }
   };
 
   const inputHandler = ({ target }) => {
@@ -33,7 +42,7 @@ export default function SignupPage() {
         <label>
           Username:
           <input
-            ref={ref}
+            ref={userNameRef}
             value={username}
             name="username"
             onChange={inputHandler}
@@ -45,6 +54,7 @@ export default function SignupPage() {
         <label>
           Password:
           <input
+            ref={userPasswordRef}
             value={password}
             name="password"
             onChange={inputHandler}
@@ -52,8 +62,8 @@ export default function SignupPage() {
             placeholder="Password"
           />
         </label>
-
-        <button className="signup-btn">Sign Up!</button>
+        <button className="form-btn">Sign Up!</button>
+        {errorMsg && <div className="error-msg">{errorMsg}</div>}
       </form>
     </section>
   );

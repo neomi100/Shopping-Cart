@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     loggedinUser: null,
+    systemMsg: ''
 }
 
 export function userReducer(state = INITIAL_STATE, action) {
@@ -18,6 +19,11 @@ export function userReducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 loggedinUser: null
+            }
+        case 'SET_ERROR':
+            return {
+                ...state,
+                systemMsg: action.systemMsg
             }
         default:
             return state

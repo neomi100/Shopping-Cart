@@ -1,21 +1,36 @@
 import { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../store/userStore/userAction";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, setError } from "../store/userStore/userAction";
+import { NavLink } from "react-router-dom";
 
 export default function LoginPage() {
   const history = useHistory();
   const [fields, setFields] = useState({ username: "", password: "" });
   const dispatch = useDispatch();
-  const ref = useRef();
+  const userNameRef = useRef();
+  const userPasswordRef = useRef();
+  const { systemMsg } = useSelector((state) => state.userModule);
+  const { loggedinUser } = useSelector((state) => state.userModule);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    ref.current.focus();
+    dispatch(setError());
+    userNameRef.current.focus();
   }, []);
+
   const login = (ev) => {
     ev.preventDefault();
-    history.push("/");
-    dispatch(loginUser({ username, password }));
+    dispatch(setError());
+    if (userNameRef.current.value && userPasswordRef.current.value) {
+      setErrorMsg("");
+      dispatch(loginUser({ username, password }));
+      if (loggedinUser) {
+        history.push("/");
+      }
+    } else {
+      setErrorMsg("A username and password must be entered");
+    }
   };
 
   const inputHandler = ({ target }) => {
@@ -32,7 +47,7 @@ export default function LoginPage() {
         <label>
           Username:
           <input
-            ref={ref}
+            ref={userNameRef}
             value={username}
             name="username"
             onChange={inputHandler}
@@ -44,6 +59,7 @@ export default function LoginPage() {
         <label>
           Password:
           <input
+            ref={userPasswordRef}
             value={password}
             name="password"
             onChange={inputHandler}
@@ -52,7 +68,17 @@ export default function LoginPage() {
           />
         </label>
 
-        <button className="login-btn">Login!</button>
+        <button className="form-btn">Login!</button>
+        {systemMsg && <div className="error-msg">{systemMsg}</div>}
+        {errorMsg && <div className="error-msg">{errorMsg}</div>}
+
+        <NavLink
+          to="/signup"
+          activeClassName="active-nav"
+          className="signup-btn"
+        >
+          Signup
+        </NavLink>
       </form>
     </section>
   );
