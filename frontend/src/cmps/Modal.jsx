@@ -25,13 +25,13 @@ export default function Modal({ toggleModal }) {
         >
           Signup
         </NavLink>
-        <NavLink
+        {!loggedinUser &&<NavLink
           to="/login"
           activeClassName="active-nav"
           className="modal-btn btn"
         >
           Login
-        </NavLink>
+        </NavLink>}
         {loggedinUser && (
           <div className="modal-btn btn" onClick={onLogout}>
             Logout

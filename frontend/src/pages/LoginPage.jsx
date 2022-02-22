@@ -17,7 +17,8 @@ export default function LoginPage() {
   useEffect(() => {
     dispatch(setError());
     userNameRef.current.focus();
-  }, []);
+    if (loggedinUser) history.push("/");
+  }, [loggedinUser]);
 
   const login = (ev) => {
     ev.preventDefault();
@@ -25,9 +26,6 @@ export default function LoginPage() {
     if (userNameRef.current.value && userPasswordRef.current.value) {
       setErrorMsg("");
       dispatch(loginUser({ username, password }));
-      if (loggedinUser) {
-        history.push("/");
-      }
     } else {
       setErrorMsg("A username and password must be entered");
     }
