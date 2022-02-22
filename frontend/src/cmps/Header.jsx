@@ -7,7 +7,7 @@ export default function Header() {
   const { loggedinUser } = useSelector((state) => state.userModule);
   const { cart } = useSelector((state) => state.cartModule);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  
   const toggleModal = () => {
     setModalIsOpen((prev) => !prev);
   };
@@ -25,9 +25,7 @@ export default function Header() {
         </NavLink>
       </div>
       <div className="user-header">
-        {loggedinUser && (
-          <div className="hello">Hello {loggedinUser.username}</div>
-        )}
+        {loggedinUser && <div className="hello">Hello {loggedinUser.username.substr(0, 5)}</div>}
         <div className="patch">
           <div className="coverage"></div>
         </div>

@@ -7,6 +7,7 @@
     @media (max-width: 600px) {
         width: 100%;
         padding: 4px;
+        position: fixed;
     }
     .hello {
         display: flex;
@@ -15,6 +16,9 @@
         font-family: archi, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
         font-size: 1.7rem;
         margin: 3px 7px 3px 0;
+        @media (max-width: 600px) {
+            font-size: 1.2rem;
+        }
     }
     .logo {
         margin: 3px 23px 6px 1.9vw;
@@ -116,7 +120,7 @@
             box-shadow: 0 0 2px 2px rgb(138, 137, 137);
             border-radius: 11px;
             @media (max-width: 600px) {
-                top: 26%;
+                top: 25.5%;
             }
         }
         .container {
@@ -131,7 +135,7 @@
             }
             .btn {
                 border-radius: 3px;
-                padding: 10px;
+                padding: 6px;
                 background-color: #8a9dee;
                 color: white;
                 border: none;

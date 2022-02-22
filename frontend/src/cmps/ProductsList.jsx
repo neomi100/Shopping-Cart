@@ -31,7 +31,7 @@ export default function ProductsList({ products }) {
   };
 
   return (
-    <div>
+    <div className="shell">
       <ul className="list">
         {productsPage.map((product) => {
           return (
