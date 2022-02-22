@@ -1,19 +1,17 @@
 import { cartService } from "../../services/cartService";
 
-export function addToCart(product, loggedinUser) {
+export function addToCart(product, userId) {
   return async dispatch => {
     try {
-      const userId = loggedinUser ? loggedinUser._id : null
       const productId = product._id
       const productsToSend = [productId]
       await cartService.addToCart(productsToSend, userId)
-      dispatch({ type: 'ADD_TO_CART', product })
+      dispatch({ type: 'ADD_TO_CART', productToAdd: productId, productsToShow: product })
     } catch (err) {
       console.log(err);
     }
   }
 }
-
 export function setCartToShow(cartToShow) {
   return async dispatch => {
     try {

@@ -50,7 +50,7 @@ export default function CartList({ products }) {
             ))}
           </ul>
           <div className="total-price">
-            Total price: ${parseFloat((sum).toFixed(2))}  
+            Total price: ${parseFloat(sum.toFixed(2))}
           </div>
           {products.length > 6 && (
             <div className="pagenation">

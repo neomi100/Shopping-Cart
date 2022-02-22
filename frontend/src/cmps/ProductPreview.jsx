@@ -6,7 +6,8 @@ export default function ProductPreview({ product }) {
   const dispatch = useDispatch();
 
   const addProduct = (product) => {
-    dispatch(addToCart(product, loggedinUser));
+    const userId = loggedinUser ? loggedinUser._id : null;
+    dispatch(addToCart(product, userId));
   };
 
   return (

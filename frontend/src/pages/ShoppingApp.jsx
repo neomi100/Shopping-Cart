@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { cartService } from "../services/cartService";
-import { setCart } from "../store/cartStore/cartAction";
+import { productsService } from "../services/productsService";
+import { setCart, setCartToShow } from "../store/cartStore/cartAction";
 
 export default function ShoppingApp() {
   const { cart } = useSelector((state) => state.cartModule);
@@ -21,23 +22,28 @@ export default function ShoppingApp() {
 
   const getInitialCart = async () => {
     let updateCart = cart;
-
     if (!isFrist && loggedinUser && cart.length) {
       setIsFrist(true);
       const { _id: userId } = loggedinUser;
       updateCart = await cartService.addToCart(cart, userId);
-      dispatch(setCart(updateCart));
+      dispatch(setCart(updateCart.productsIds));
     }
     if (loggedinUser) {
       setIsFrist(true);
       const { _id: userId } = loggedinUser;
       updateCart = await cartService.getCart(userId);
-      dispatch(setCart(updateCart));
+      dispatch(setCart(updateCart.productsIds));
     } else {
       setIsFrist(false);
       updateCart = localStorage.CART
         ? JSON.parse(localStorage.CART)
         : { userId: null, productsIds: [] };
+    }
+    if (updateCart.productsIds.length) {
+      const productsToShow = await productsService.getProductsByIds(
+        updateCart.productsIds
+      );
+      dispatch(setCartToShow(productsToShow));
     }
   };
 

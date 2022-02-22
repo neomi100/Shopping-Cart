@@ -7,7 +7,6 @@ import { setCartToShow } from "../store/cartStore/cartAction";
 export default function MyCart() {
   const { cartToShow, cart } = useSelector((state) => state.cartModule);
   const dispatch = useDispatch();
-
   useEffect(() => {
     getProducts();
   }, [cart]);
