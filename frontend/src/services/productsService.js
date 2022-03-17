@@ -10,6 +10,7 @@ export const productsService = {
 
 async function query() {
     const res = await axios.get(`${BASE_URL}products`)
+    // console.log(res.data, 'res.data');
     return res.data
 }
 

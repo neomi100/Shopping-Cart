@@ -18,6 +18,7 @@ export function loginUser(credentials) {
             const loguser = await userService.login(credentials)
             if (loguser) setError()
             dispatch({ type: 'LOGIN', user: loguser })
+            // dispatch({ type: 'SET_ERROR', systemMsg: "Wrong username or password. Maybe we do not know yet? Please try again or sign up" })
         } catch (error) {
             dispatch({ type: 'SET_ERROR', systemMsg: "Wrong username or password. Maybe we do not know yet? Please try again or sign up" })
             console.log('error', error)

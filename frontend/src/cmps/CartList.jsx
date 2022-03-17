@@ -41,7 +41,7 @@ export default function CartList({ products }) {
   return (
     <>
       {products.length > 0 && (
-        <div className="cart-list shell">
+        <div className="shell">
           <ul className="list">
             {productsPage.map((product, idx) => (
               <li key={idx} className="preview-cart preview-container">

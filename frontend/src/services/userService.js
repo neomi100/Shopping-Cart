@@ -22,6 +22,7 @@ async function login(userCred) {
 
 async function logout() {
   sessionStorage.clear();
+  localStorage.clear()
   return await axios.post(`${BASE_URL}user/logout/`);
 }
 

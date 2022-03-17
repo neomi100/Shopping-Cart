@@ -8,6 +8,7 @@ export default function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // console.log(products, 'products');
     dispatch(loadProducts());
   }, [products]);
 
